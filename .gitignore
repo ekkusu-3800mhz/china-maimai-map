@@ -1,4 +1,4 @@
-test/*
+test
 App/Runtime
 config.php
 !App/Common/Conf/config.php

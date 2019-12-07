@@ -13,13 +13,15 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 }
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG', true);
+define('APP_DEBUG', false);
 
 // 绑定模块
 define('BIND_MODULE', 'Map');
 
-// 定义应用目录
+// 定义环境常量
 define('APP_PATH', './App/');
+define('SITE_ROOT', dirname(__FILE__));
+define('BASE_URL', 'http://localhost:1919');
 
 // 引入ThinkPHP入口文件
 require './Framework/ThinkPHP.php';

@@ -65,7 +65,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand">舞萌DX店铺分布可视化地图</a>
+                    <a href="#" id="home" class="navbar-brand">舞萌DX店铺分布可视化地图</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <form id="search-form" class="navbar-form navbar-left">
@@ -196,6 +196,14 @@
 
                 var xhr = $.get(baseUrl + '/api/query.json');
                 addXhrEvents(xhr, false);
+
+                $('#home').on('click', function(e) {
+                    e.preventDefault();
+                    $('#loader').fadeIn('fast');
+                    var query = $('#query').val();
+                    xhr = $.get(baseUrl + '/api/query.json');
+                    addXhrEvents(xhr, false);
+                });
 
                 $('#search-form').on('submit', function(e) {
                     e.preventDefault();

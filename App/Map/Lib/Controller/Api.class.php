@@ -66,7 +66,7 @@ class Api extends Controller {
      */
 
     public function _empty() {
-        $this->setStatus(404)->setData(array('error' => 'Bad Request'));
+        $this->setStatus(404)->setData(array('error' => 'Invalid Request'));
     }
 
     /**
@@ -81,7 +81,7 @@ class Api extends Controller {
         if ((I('server.REQUEST_METHOD') == $type) || (strtolower(I('server.REQUEST_METHOD')) == $type)) {
             call_user_func($action);
         } else {
-            $this->setStatus(404)->setData(array('error' => 'Bad Request'));
+            $this->setStatus(404)->setData(array('error' => 'Invalid Request'));
         }
     }
 

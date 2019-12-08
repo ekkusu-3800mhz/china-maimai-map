@@ -10,10 +10,19 @@
 
 namespace Map\Model;
 
-use \Map\Lib\Curl,
+use \Think\Model,
+    \Map\Lib\Curl,
     \Think\Exception;
 
-class DataSourceModel {
+class DataSourceModel extends Model {
+
+    /**
+     *  定义数据表名称
+     *
+     *  @var string
+     */
+
+    protected $tableName = 'location_fix';
 
     /**
      *  店铺数据接口URL存储变量
@@ -38,18 +47,42 @@ class DataSourceModel {
      */
 
     public function __construct() {
+        parent::__construct();
         $this->_apiUrl = C('API_URL');
         $raw = (new Curl($this->_apiUrl))->get()->result(true);
         $data = array();
         foreach ($raw as $shop) {
             $data[] = array(
+                'id'       => $shop['id'],
                 'name'     => $shop['arcadeName'],
                 'province' => $shop['province'],
                 'address'  => $shop['address'],
-                'count'    => $shop['machineCount']
+                'count'    => $shop['machineCount'],
+                'lnglat'   => NULL
             );
         }
         $this->_rawData = $data;
+        $this->_fixLocation();
+    }
+
+    /**
+     *  对店铺位置进行纠偏
+     *
+     *  @return void
+     */
+
+    private function _fixLocation() {
+        $result = $this->select();
+        $fixed = array();
+        foreach ($this->_rawData as $raw) {
+            foreach ($result as $fix) {
+                if ($fix['shop_id'] == $raw['id']) {
+                    $raw['lnglat'] = json_decode($fix['shop_location'], true);
+                }
+                $fixed[] = $raw;
+            }
+        }
+        $this->_rawData = $fixed;
     }
 
     /**
@@ -59,7 +92,7 @@ class DataSourceModel {
      *  @return array
      */
 
-    public function queryShop($query) {
+    public function queryShop($query = '') {
         if (empty($query)) {
             return array(
                 'count' => count($this->_rawData),
@@ -76,24 +109,6 @@ class DataSourceModel {
             'count' => count($result),
             'rows'  => $result
         );
-    }
-
-    /**
-     *  获取已上线省份列表
-     *
-     *  @return array
-     */
-
-    public function getProvince() {
-        $provinces = array();
-        $data = array();
-        foreach ($this->_rawData as $shop) {
-            $provinces[] = $shop['province'];
-        }
-        foreach (array_unique($provinces) as $province) {
-            $data[] = $province;
-        }
-        return $data;
     }
 
 }

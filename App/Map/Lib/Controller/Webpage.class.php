@@ -48,7 +48,9 @@ class Webpage extends Controller {
     protected function page($method, $action, $title = '') {
         if (I('server.REQUEST_METHOD') == $method || strtolower(I('server.REQUEST_METHOD')) == $method) {
             if (!empty($title)) {
-                $this->assign('pageTitle', $title . ' ' . C('PAGE_TITLE_DELIMITER') . ' ');
+                $this->assign('pageTitle', $title . ' ' . C('PAGE_TITLE_DELIMITER') . ' ' . C('SITE_NAME'));
+            } else {
+                $this->assign('pageTitle', C('SITE_NAME'));
             }
             if (!is_callable($action)) {
                 throw new Exception('请设置一个有效的响应逻辑');

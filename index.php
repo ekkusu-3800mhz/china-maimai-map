@@ -21,7 +21,7 @@ define('BIND_MODULE', 'Map');
 // 定义环境常量
 define('APP_PATH', './App/');
 define('SITE_ROOT', dirname(__FILE__));
-define('BASE_URL', 'http://localhost:1919');
+define('BASE_URL', '');
 
 // 引入ThinkPHP入口文件
 require './Framework/ThinkPHP.php';

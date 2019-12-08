@@ -21,7 +21,7 @@ define('BIND_MODULE', 'Map');
 // 定义环境常量
 define('APP_PATH', './App/');
 define('SITE_ROOT', dirname(__FILE__));
-define('BASE_URL', '');
+define('BASE_URL', 'https://mmdxmap.applinzi.com');
 
 // 引入ThinkPHP入口文件
 require './Framework/ThinkPHP.php';

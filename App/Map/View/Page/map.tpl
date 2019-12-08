@@ -79,6 +79,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#about-modal"><span class="fa fa-info-circle"></span> 关于本页面</a></li>
                     </ul>
                 </div>

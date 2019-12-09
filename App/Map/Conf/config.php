@@ -10,7 +10,7 @@
 return array(
     'URL_ROUTER_ON' => true,
     'URL_MAP_RULES' => array(
-        'index'     => 'Page/map',
+        'page/map'  => 'Page/map',
         'api/query' => 'Api/query'
     )
 );

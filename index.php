@@ -18,10 +18,14 @@ define('APP_DEBUG', false);
 // 绑定模块
 define('BIND_MODULE', 'Map');
 
+// 定义应用模式与缓存模式
+define('APP_MODE', 'common');
+define('STORAGE_TYPE', 'File');
+
 // 定义环境常量
 define('APP_PATH', './App/');
 define('SITE_ROOT', dirname(__FILE__));
-define('BASE_URL', 'https://mmdxmap.applinzi.com');
+define('BASE_URL', '');
 
 // 引入ThinkPHP入口文件
 require './Framework/ThinkPHP.php';

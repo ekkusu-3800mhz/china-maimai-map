@@ -23,7 +23,7 @@ class PageController extends Webpage {
 
     public function mapAction() {
         $this->page('get', function() {
-            $this->assign('apiUrl', BASE_URL);
+            $this->assign('apiUrl', BASE_URL . '/api/query.json');
             $this->display();
         });
     }

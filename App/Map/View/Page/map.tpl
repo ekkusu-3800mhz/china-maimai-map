@@ -2,6 +2,7 @@
 <html lang="zh_CN">
     <head>
         <meta charset="utf-8">
+        <meta name="theme-color" content="#222">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>{{$pageTitle}}</title>
         <link rel="icon" type="image/x-icon" href="__IMG__/favicon.png">
@@ -92,7 +93,7 @@
         </div>
         <script src="__JS__/jquery.js"></script>
         <script src="__JS__/bootstrap.js"></script>
-        <script src="http://api.map.baidu.com/api?v=3.0&ak=B76Awux7dA2KsTvntDGj0cpw2yWQi4GM"></script>
+        <script src="https://api.map.baidu.com/api?v=3.0&ak=B76Awux7dA2KsTvntDGj0cpw2yWQi4GM"></script>
         <script type="text/javascript">
             $(document).ready(function() {
 
@@ -100,7 +101,7 @@
                  *  初始化百度地图
                  */
 
-                var baseUrl = '{{$apiUrl}}';
+                var queryUrl = '{{$apiUrl}}';
                 var map = new BMap.Map("map");
                 var point = new BMap.Point(114.313886,30.601948);
                 var geolocation = new BMap.Geolocation();
@@ -158,7 +159,7 @@
                                     if (point) {
                                         var attr = {
                                             title: `${shop.name}`,
-                                            content: `<span style="font-size: 11px; color: #666;">店铺地址：${shop.address}</span><br><span style="font-size: 11px; color: #666;">机台组数：${shop.count}组</span>`
+                                            content: `<span style="font-size: 11px; color: #666;">店铺地址：${shop.address}</span><br><span style="font-size: 11px; color: #666;">机台数量：${shop.count}组</span>`
                                         };
                                         if (shop.lnglat != null) {
                                             point = new BMap.Point(shop.lnglat.lng, shop.lnglat.lat);
@@ -195,14 +196,14 @@
                  *  通过Ajax加载所有店铺
                  */
 
-                var xhr = $.get(baseUrl + '/api/query.json');
+                var xhr = $.get(queryUrl);
                 addXhrEvents(xhr, false);
 
                 $('#home').on('click', function(e) {
                     e.preventDefault();
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
-                    xhr = $.get(baseUrl + '/api/query.json');
+                    xhr = $.get(queryUrl);
                     addXhrEvents(xhr, false);
                 });
 
@@ -210,7 +211,7 @@
                     e.preventDefault();
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
-                    xhr = $.get(baseUrl + '/api/query.json?query=' + query);
+                    xhr = $.get(queryUrl + '?query=' + query);
                     addXhrEvents(xhr, true);
                 });
 

@@ -72,17 +72,14 @@ class DataSourceModel extends Model {
      */
 
     private function _fixLocation() {
-        $result = $this->select();
-        $fixed = array();
-        foreach ($this->_rawData as $raw) {
+        $result = $this->order('shop_id ASC')->select();
+        for ($i = 0; $i < count($this->_rawData); $i++) {
             foreach ($result as $fix) {
-                if ($fix['shop_id'] == $raw['id']) {
-                    $raw['lnglat'] = json_decode($fix['shop_location'], true);
+                if ($this->_rawData[$i]['id'] == $fix['shop_id']) {
+                    $this->_rawData[$i]['lnglat'] = json_decode($fix['shop_location'], true);
                 }
-                $fixed[] = $raw;
             }
         }
-        $this->_rawData = $fixed;
     }
 
     /**
@@ -102,6 +99,9 @@ class DataSourceModel extends Model {
         $result = array();
         foreach ($this->_rawData as $shop) {
             if (strpos($shop['name'], $query) !== false) {
+                $result[] = $shop;
+            }
+            if (strpos($shop['province'], $query) !== false) {
                 $result[] = $shop;
             }
         }

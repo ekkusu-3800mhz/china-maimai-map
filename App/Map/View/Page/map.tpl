@@ -102,14 +102,14 @@
 
                 var baseUrl = '{{$apiUrl}}';
                 var map = new BMap.Map("map");
-                var point = new BMap.Point(113.270798,23.132431);
+                var point = new BMap.Point(114.313886,30.601948);
                 var geolocation = new BMap.Geolocation();
                 var geocoder = new BMap.Geocoder();
-                map.centerAndZoom(point, 10);
+                map.centerAndZoom(point, 6);
                 map.enableScrollWheelZoom(true);
                 map.addControl(new BMap.ScaleControl());
                 map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 55)}));                
+                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 55)}));
 
                 /**
                  *  封装快捷添加标记点函数
@@ -149,6 +149,10 @@
                         if (res.status == 200) {
                             map.clearOverlays();
                             var shops = res.data.rows;
+                            var multi = false;
+                            if (shops.length > 1) {
+                                multi = true;
+                            }
                             shops.forEach(function(shop) {
                                 geocoder.getPoint(shop.address, function(point) {
                                     if (point) {
@@ -160,8 +164,12 @@
                                             point = new BMap.Point(shop.lnglat.lng, shop.lnglat.lat);
                                         }
                                         addMarker(point, attr);
-                                        if (setCenter === true) {
-                                            map.centerAndZoom(point, 10);
+                                        if (setCenter) {
+                                            if (multi) {
+                                                map.centerAndZoom(point, 6);
+                                            } else {
+                                                map.centerAndZoom(point, 17);
+                                            }
                                         }
                                     }
                                 }, shop.province);

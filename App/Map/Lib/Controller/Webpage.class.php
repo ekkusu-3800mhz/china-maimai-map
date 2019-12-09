@@ -63,6 +63,27 @@ class Webpage extends Controller {
     }
 
     /**
+     *  页面重定向
+     *
+     *  @param string $module 要重定向的模块与操作
+     *  @param array $data GET参数
+     *  @return void
+     */
+
+    protected function redirectTo($module, $data = array()) {
+        if (empty($module)) {
+            throw new Exception('目标模块与操作无效');
+        } else {
+            $url =  $module . '.html';
+            if (!empty($data)) {
+                $url .= '?' . http_build_query($data);
+            }
+            redirect($url);
+        }
+    }
+
+
+    /**
      *  空操作
      *
      *  @return void

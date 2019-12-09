@@ -7,4 +7,5 @@
  */
 
 INSERT INTO maidx_location_fix (shop_id, shop_location) VALUES
-(1113, '{"lng": "113.547394", "lat": "22.241392"}');
+(1113, '{"lng": "113.547394", "lat": "22.241392"}'),
+(1080, '{"lng": "118.793502", "lat": "32.04613"}');

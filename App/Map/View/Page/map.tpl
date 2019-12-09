@@ -103,25 +103,13 @@
                 var baseUrl = '{{$apiUrl}}';
                 var map = new BMap.Map("map");
                 var point = new BMap.Point(113.270798,23.132431);
+                var geolocation = new BMap.Geolocation();
                 var geocoder = new BMap.Geocoder();
                 map.centerAndZoom(point, 10);
                 map.enableScrollWheelZoom(true);
                 map.addControl(new BMap.ScaleControl());
                 map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 55)}));
-
-                /**
-                 *  对用户进行定位
-                 */
-
-                var geolocation = new BMap.Geolocation();
-                geolocation.getCurrentPosition(function(res) {
-                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-                        var marker = new BMap.Marker(res.point);
-                        map.addOverlay(marker);
-                        map.panTo(res.point);
-                    }
-                });
+                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 55)}));                
 
                 /**
                  *  封装快捷添加标记点函数
@@ -187,6 +175,11 @@
                     });
                     xhr.always(function() {
                         $('#loader').fadeOut('fast');
+                        geolocation.getCurrentPosition(function(res) {
+                            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                                map.panTo(res.point);
+                            }
+                        });
                     });
                 }
 

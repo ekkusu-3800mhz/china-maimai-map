@@ -71,7 +71,7 @@
                     <form id="search-form" class="navbar-form navbar-left">
                         <div class="form-group">
                             <div class="input-group">
-                                <input id="query" type="text" name="query" class="form-control" placeholder="键入省市或店铺名称..." required>
+                                <input id="query" type="text" name="query" class="form-control" placeholder="键入省份或店铺名称..." required>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span> 搜索店铺</button>
                                 </span>

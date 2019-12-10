@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>{{$pageTitle}}</title>
         <link rel="icon" type="image/x-icon" href="__IMG__/favicon.png">
-        <link rel="stylesheet" href="__CSS__/bootstrap.css">
-        <link rel="stylesheet" href="__CSS__/icons.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             html {
                 height: 100%;
@@ -53,8 +53,8 @@
             }
         </style>
         <!--[if lt IE 9]>
-            <script src="__JS__/html5.js"></script>
-            <script src="__JS__/respond.js"></script>
+            <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
     <body>
@@ -91,8 +91,8 @@
             <img src="__IMG__/favicon.png">
             <p>Now Loading</p>
         </div>
-        <script src="__JS__/jquery.js"></script>
-        <script src="__JS__/bootstrap.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/1.10.0/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://api.map.baidu.com/api?v=3.0&ak=B76Awux7dA2KsTvntDGj0cpw2yWQi4GM"></script>
         <script type="text/javascript">
             $(document).ready(function() {

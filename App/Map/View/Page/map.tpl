@@ -125,8 +125,8 @@
                     } else {
                         var icon = '__IMG__/map-icon-single.png';
                     }
-                    var dxIcon = new BMap.Icon(icon, new BMap.Size(32, 32), {
-                        anchor: new BMap.Size(16, 16)
+                    var dxIcon = new BMap.Icon(icon, new BMap.Size(40, 40), {
+                        anchor: new BMap.Size(20, 20)
                     });
                     var marker = new BMap.Marker(point, {icon: dxIcon});
                     map.addOverlay(marker);

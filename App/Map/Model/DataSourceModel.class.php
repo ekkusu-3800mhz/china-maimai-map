@@ -119,12 +119,31 @@ class DataSourceModel extends Model {
 
     public function getStats() {
         $provinces = array();
+        $stats = array();
+        $shopNum = 0;
+        $machineNum = 0;
         foreach ($this->_rawData as $raw) {
             $provinces[] = $raw['province'];
         }
+        $provincesUnique = array_unique($provinces);
+        for ($i = 0; $i < count($this->_rawData); $i++) {
+            foreach ($provincesUnique as $prov) {
+                if ($this->_rawData[$i]['province'] == $prov) {
+                    $stats[$prov]['machine'] += $this->_rawData[$i]['count'];
+                    $machineNum += $this->_rawData[$i]['count'];
+                }
+            }
+        }
+        foreach (array_count_values($provinces) as $prov => $num) {
+            $stats[$prov]['shop'] = $num;
+            $shopNum += $num;
+        }
         return array(
-            'count'    => count($provinces),
-            'province' => array_count_values($provinces)
+            'count' => array(
+                'shop'    => $shopNum,
+                'machine' => $machineNum
+            ),
+            'stats' => $stats
         );
     }
 

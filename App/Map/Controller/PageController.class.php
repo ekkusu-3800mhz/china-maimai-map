@@ -51,7 +51,7 @@ class PageController extends Webpage {
             $result = $this->model->data->getStats();
             $this->assign('time', date('Y-m-d H:i'));
             $this->assign('count', $result['count']);
-            $this->assign('province', $result['province']);
+            $this->assign('stats', $result['stats']);
             $this->display();
         }, '机台分布统计');
     }

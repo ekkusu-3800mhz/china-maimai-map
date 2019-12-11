@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>{{$pageTitle}}</title>
         <link rel="icon" type="image/x-icon" href="__IMG__/favicon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap">
         <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
@@ -16,7 +17,7 @@
                 height: 100%;
                 margin: 0px;
                 padding-top: 51px;
-                font-family: "Noto Sans CJK SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
+                font-family: "Noto Sans SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
             }
             #map {
                 width: 100%;
@@ -203,8 +204,12 @@
                  *  通过Ajax加载所有店铺
                  */
 
-                var xhr = $.get(queryUrl);
-                addXhrEvents(xhr, false);
+                var xhr = $.get(queryUrl + '?query={{$location}}');
+                if ('{{$location}}' == '') {
+                    addXhrEvents(xhr, false);
+                } else {
+                    addXhrEvents(xhr, true);
+                }
 
                 $('#home').on('click', function(e) {
                     e.preventDefault();

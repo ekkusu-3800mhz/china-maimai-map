@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <title>{{$pageTitle}}</title>
         <link rel="icon" type="image/x-icon" href="__IMG__/favicon.png">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap">
         <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             body {
                 padding-top: 70px;
-                font-family: "Noto Sans CJK SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
+                font-family: "Noto Sans SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
             }
             div.count-panel > div.panel-body {
                 text-align: center;
@@ -59,16 +60,16 @@
                 <div class="col-md-6">
                     <div class="panel panel-success count-panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">数据概览</h3>
+                            <h3 class="panel-title"><span class="fa fa-pie-chart"></span> 数据概览</h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6 count-cell">
-                                    <p>店铺总数（家）</p>
+                                    <p>店铺总数</p>
                                     <p class="count-num text-info">{{$count.shop}}</p>
                                 </div>
                                 <div class="col-sm-6 count-cell">
-                                    <p>机台总数（组）</p>
+                                    <p>机台总数</p>
                                     <p class="count-num text-success">{{$count.machine}}</p>
                                 </div>
                             </div>
@@ -77,13 +78,13 @@
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h3 class="panel-title">各省分布</h3>
+                            <h3 class="panel-title"><span class="fa fa-map"></span> 各地分布</h3>
                         </div>
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width: 40%;">已上线省份</th>
+                                        <th style="width: 40%;">已上线地区</th>
                                         <th style="width: 30%; text-align: center;">店铺数量</th>
                                         <th style="width: 30%; text-align: right;">机台数量</th>
                                     </tr>
@@ -91,8 +92,8 @@
                                 <tbody>
                                     <foreach name="stats" key="province" item="stat">
                                         <tr>
-                                            <td>{{$province}}</td>
-                                            <td style="text-align: center;">{{$stat.shop}}家</td>
+                                            <td><a href="/page/map.html?location={{$province}}"><span class="fa fa-map-marker"></span> {{$province}}</a></td>
+                                            <td style="text-align: center;">{{$stat.shop}}</td>
                                             <td style="text-align: right;">{{$stat.machine}}组</td>
                                         </tr>
                                     </foreach>

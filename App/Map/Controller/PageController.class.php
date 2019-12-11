@@ -11,9 +11,21 @@
 namespace Map\Controller;
 
 use \Map\Lib\Controller\Webpage,
+    \Map\Model\DataSourceModel,
     \Think\Exception;
 
 class PageController extends Webpage {
+
+    /**
+     *  构造函数
+     *
+     *  @return void
+     */
+
+    public function __construct() {
+        parent::__construct();
+        $this->model->data = new DataSourceModel();
+    }
 
     /**
      *  地图首页操作
@@ -26,6 +38,22 @@ class PageController extends Webpage {
             $this->assign('apiUrl', BASE_URL . '/api/query.json');
             $this->display();
         });
+    }
+
+    /**
+     *  机台分布统计页面操作
+     *
+     *  @return void
+     */
+
+    public function statsAction() {
+        $this->page('get', function() {
+            $result = $this->model->data->getStats();
+            $this->assign('time', date('Y-m-d H:i'));
+            $this->assign('count', $result['count']);
+            $this->assign('province', $result['province']);
+            $this->display();
+        }, '机台分布统计');
     }
 
 }

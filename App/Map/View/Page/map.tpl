@@ -81,7 +81,6 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#about-modal"><span class="fa fa-info-circle"></span> 关于本页面</a></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +109,7 @@
                 map.enableScrollWheelZoom(true);
                 map.addControl(new BMap.ScaleControl());
                 map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 55)}));
+                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 50)}));
 
                 /**
                  *  封装快捷添加标记点函数
@@ -121,7 +120,12 @@
                  */
 
                 function addMarker(point, attr) {
-                    var dxIcon = new BMap.Icon('__IMG__/map-icon.png', new BMap.Size(64, 64), {
+                    if (attr.count > 1) {
+                        var icon = '__IMG__/map-icon-multi.png';
+                    } else {
+                        var icon = '__IMG__/map-icon-single.png';
+                    }
+                    var dxIcon = new BMap.Icon(icon, new BMap.Size(32, 32), {
                         anchor: new BMap.Size(16, 16)
                     });
                     var marker = new BMap.Marker(point, {icon: dxIcon});
@@ -159,7 +163,8 @@
                                     if (point) {
                                         var attr = {
                                             title: `${shop.name}`,
-                                            content: `<span style="font-size: 11px; color: #666;">店铺地址：${shop.address}</span><br><span style="font-size: 11px; color: #666;">机台数量：${shop.count}组</span>`
+                                            content: `<span style="font-size: 11px; color: #666;">店铺地址：${shop.address}</span><br><span style="font-size: 11px; color: #666;">机台数量：${shop.count}组</span>`,
+                                            count: shop.count
                                         };
                                         if (shop.lnglat != null) {
                                             point = new BMap.Point(shop.lnglat.lng, shop.lnglat.lat);

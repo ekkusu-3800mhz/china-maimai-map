@@ -8,9 +8,10 @@
  */
 
 return array(
-    'URL_ROUTER_ON' => true,
-    'URL_MAP_RULES' => array(
-        'page/map'  => 'Page/map',
-        'api/query' => 'Api/query'
+    'URL_ROUTER_ON'  => true,
+    'URL_MAP_RULES'  => array(
+        'page/map'   => 'Page/map',
+        'page/stats' => 'Page/stats',
+        'api/query'  => 'Api/query'
     )
 );

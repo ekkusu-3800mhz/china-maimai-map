@@ -16,6 +16,7 @@
                 height: 100%;
                 margin: 0px;
                 padding-top: 51px;
+                font-family: "Noto Sans CJK SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
             }
             #map {
                 width: 100%;
@@ -80,6 +81,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/page/stats.html"><span class="fa fa-bar-chart"></span> 机台分布统计</a></li>
                         <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
                     </ul>
                 </div>

@@ -8,7 +8,7 @@
         <link rel="icon" type="image/x-icon" href="__IMG__/favicon.png">
         <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style type="text/css">html{height:100%}body{height:100%;margin:0;padding-top:51px}#map{width:100%;height:100%;overflow:hidden;margin:0}#loader{position:absolute;width:100%;height:100%;text-align:center;z-index:1000;top:0;left:0;background-color:rgba(0,0,0,0.8);color:#fff}#loader>img{-webkit-animation:fa-spin 5s infinite linear;animation:fa-spin 5s infinite linear}#loader>p{padding-top:15px}@media(max-width:768px){#loader{padding-top:280px}}@media(min-width:768px){#loader{padding-top:340px}}</style>
+        <style type="text/css">html{height:100%}body{height:100%;margin:0;padding-top:51px;font-family:"Noto Sans CJK SC",微软雅黑,Arial,黑体,宋体,sans-serif!important}#map{width:100%;height:100%;overflow:hidden;margin:0}#loader{position:absolute;width:100%;height:100%;text-align:center;z-index:1000;top:0;left:0;background-color:rgba(0,0,0,0.8);color:#fff}#loader>img{-webkit-animation:fa-spin 5s infinite linear;animation:fa-spin 5s infinite linear}#loader>p{padding-top:15px}@media(max-width:768px){#loader{padding-top:280px}}@media(min-width:768px){#loader{padding-top:340px}}</style>
         <!--[if lt IE 9]>
             <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
             <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -37,6 +37,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/page/stats.html"><span class="fa fa-bar-chart"></span> 机台分布统计</a></li>
                         <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
                     </ul>
                 </div>

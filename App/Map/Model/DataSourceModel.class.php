@@ -111,4 +111,21 @@ class DataSourceModel extends Model {
         );
     }
 
+    /**
+     *  统计各省份所拥有的机台数量
+     *
+     *  @return array
+     */
+
+    public function getStats() {
+        $provinces = array();
+        foreach ($this->_rawData as $raw) {
+            $provinces[] = $raw['province'];
+        }
+        return array(
+            'count'    => count($provinces),
+            'province' => array_count_values($provinces)
+        );
+    }
+
 }

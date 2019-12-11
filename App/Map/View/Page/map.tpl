@@ -74,7 +74,7 @@
                     <form id="search-form" class="navbar-form navbar-left">
                         <div class="form-group">
                             <div class="input-group">
-                                <input id="query" type="text" name="query" class="form-control" placeholder="键入省份或店铺名称..." required>
+                                <input id="query" type="text" name="query" value="{{$query}}" class="form-control" placeholder="键入省份或店铺名称..." required>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span> 搜索店铺</button>
                                 </span>
@@ -204,8 +204,8 @@
                  *  通过Ajax加载所有店铺
                  */
 
-                var xhr = $.get(queryUrl + '?query={{$location}}');
-                if ('{{$location}}' == '') {
+                var xhr = $.get(queryUrl + '?query={{$query}}');
+                if ('{{$query}}' == '') {
                     addXhrEvents(xhr, false);
                 } else {
                     addXhrEvents(xhr, true);
@@ -216,6 +216,7 @@
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
                     xhr = $.get(queryUrl);
+                    history.pushState(null, '{{$pageTitle}}', 'map.html');
                     addXhrEvents(xhr, false);
                 });
 
@@ -224,6 +225,7 @@
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
                     xhr = $.get(queryUrl + '?query=' + query);
+                    history.pushState(null, '{{$pageTitle}}', 'map.html?query=' + query);
                     addXhrEvents(xhr, true);
                 });
 

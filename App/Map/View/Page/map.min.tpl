@@ -46,7 +46,7 @@
         <div id="map"></div>
         <div id="loader">
             <img src="__IMG__/favicon.png">
-            <p>Now Loading</p>
+            <p>NOW LOADING</p>
         </div>
         <script src="https://cdn.bootcss.com/jquery/1.10.0/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>

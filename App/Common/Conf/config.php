@@ -11,17 +11,6 @@ $config = require_once SITE_ROOT . DIRECTORY_SEPARATOR . 'config.php';
 
 return array(
 
-    /* 数据库配置 */
-
-    'DB_TYPE'              => 'mysql',
-    'DB_HOST'              => $config['database']['server']['host'],
-    'DB_PORT'              => $config['database']['server']['port'],
-    'DB_USER'              => $config['database']['authentication']['user'],
-    'DB_PWD'               => $config['database']['authentication']['pass'],
-    'DB_NAME'              => $config['database']['server']['db'],
-    'DB_PREFIX'            => $config['database']['server']['prefix'],
-    'DB_CHARSET'           => 'utf8',
-
     /* 接口地址配置 */
 
     'API_URL'              => $config['dxservice']['url'],

@@ -8,18 +8,6 @@
  */
 
 return array(
-    'database'  => array(
-        'server'     => array(
-            'host'   => 'mysql',
-            'port'   => 3306,
-            'db'     => 'maidx_map',
-            'prefix' => 'maidx_'
-        ),
-        'authentication' => array(
-            'user'       => 'root',
-            'pass'       => ''
-        )
-    ),
     'dxservice' => array(
         'url'   => 'http://wc.wahlap.net/maidx/rest/location'
     )

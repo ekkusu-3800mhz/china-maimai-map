@@ -10,19 +10,10 @@
 
 namespace Map\Model;
 
-use \Think\Model,
-    \Map\Lib\Curl,
+use \Map\Lib\Curl,
     \Think\Exception;
 
-class DataSourceModel extends Model {
-
-    /**
-     *  定义数据表名称
-     *
-     *  @var string
-     */
-
-    protected $tableName = 'location_fix';
+class DataSourceModel {
 
     /**
      *  店铺数据接口URL存储变量
@@ -31,6 +22,14 @@ class DataSourceModel extends Model {
      */
 
     private $_apiUrl;
+
+    /**
+     *  店铺地址纠偏数据存储变量
+     *
+     *  @var array
+     */
+
+    private $_locationFix;
 
     /**
      *  店铺原始数据存储变量
@@ -47,7 +46,6 @@ class DataSourceModel extends Model {
      */
 
     public function __construct() {
-        parent::__construct();
         $this->_apiUrl = C('API_URL');
         $raw = (new Curl($this->_apiUrl))->get()->result(true);
         $data = array();
@@ -62,6 +60,8 @@ class DataSourceModel extends Model {
             );
         }
         $this->_rawData = $data;
+        $locFixJson = file_get_contents(SITE_ROOT . DIRECTORY_SEPARATOR . 'Data' . DIRECTORY_SEPARATOR . 'location_fix.json');
+        $this->_locationFix = json_decode($locFixJson, true);
         $this->_fixLocation();
     }
 
@@ -72,11 +72,10 @@ class DataSourceModel extends Model {
      */
 
     private function _fixLocation() {
-        $result = $this->order('shop_id ASC')->select();
         for ($i = 0; $i < count($this->_rawData); $i++) {
-            foreach ($result as $fix) {
-                if ($this->_rawData[$i]['id'] == $fix['shop_id']) {
-                    $this->_rawData[$i]['lnglat'] = json_decode($fix['shop_location'], true);
+            foreach ($this->_locationFix as $fix) {
+                if ($this->_rawData[$i]['id'] == $fix['id']) {
+                    $this->_rawData[$i]['lnglat'] = $fix['location'];
                 }
             }
         }

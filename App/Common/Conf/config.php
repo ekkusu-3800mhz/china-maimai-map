@@ -26,6 +26,11 @@ return array(
         '__JS__'           => BASE_URL . '/Static/js'
     ),
 
+    /* 每日机台分布数据下载操作认证参数 */
+
+    'AUTH_USER'            => $config['dailydata']['authentication']['user'],
+    'AUTH_PASS'            => password_hash($config['dailydata']['authentication']['pass'], PASSWORD_DEFAULT),
+
     /* 杂项配置 */
 
     'SITE_NAME'            => '舞萌DX店铺分布可视化地图',

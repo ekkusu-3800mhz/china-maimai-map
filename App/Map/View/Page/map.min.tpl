@@ -40,6 +40,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/page/stats.html"><span class="fa fa-bar-chart"></span> 机台分布统计</a></li>
                         <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
+                        <li><a href="https://www.wjx.cn/jq/52799413.aspx" target="_blank"><span class="fa fa-comment"></span> 问题反馈</a></li>
                     </ul>
                 </div>
             </div>

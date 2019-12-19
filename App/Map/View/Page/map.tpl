@@ -96,23 +96,10 @@
         <script src="https://cdn.bootcss.com/jquery/1.10.0/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://api.map.baidu.com/api?v=3.0&ak=B76Awux7dA2KsTvntDGj0cpw2yWQi4GM"></script>
+        <script src="https://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+        <script src="https://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-
-                /**
-                 *  初始化百度地图
-                 */
-
-                var queryUrl = '{{$apiUrl}}';
-                var map = new BMap.Map("map");
-                var point = new BMap.Point(114.313886,30.601948);
-                var geolocation = new BMap.Geolocation();
-                var geocoder = new BMap.Geocoder();
-                map.centerAndZoom(point, 6);
-                map.enableScrollWheelZoom(true);
-                map.addControl(new BMap.ScaleControl());
-                map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 50)}));
 
                 /**
                  *  封装快捷添加标记点函数
@@ -132,7 +119,6 @@
                         anchor: new BMap.Size(20, 20)
                     });
                     var marker = new BMap.Marker(point, {icon: dxIcon});
-                    map.addOverlay(marker);
                     var opts = {
                         width: 250,
                         height: 110,
@@ -142,6 +128,7 @@
                     marker.addEventListener("click", function() {
                         map.openInfoWindow(infoWindow, point);
                     });
+                    markers.push(marker);
                 }
 
                 /**
@@ -155,7 +142,7 @@
                 function addXhrEvents(xhr, setCenter) {
                     xhr.done(function(res) {
                         if (res.status == 200) {
-                            map.clearOverlays();
+                            markers = [];
                             var shops = res.data.rows;
                             var multi = false;
                             if (shops.length > 1) {
@@ -184,21 +171,41 @@
                                 }, shop.province);
                             });
                         } else {
+                            console.error(res.data.error);
                             alert('发生请求错误，请刷新页面重试');
                         }
                     });
-                    xhr.fail(function() {
+                    xhr.fail(function(err) {
+                        console.error(err);
                         alert('发生请求错误，请刷新页面重试');
                     });
                     xhr.always(function() {
-                        $('#loader').fadeOut('fast');
-                        geolocation.getCurrentPosition(function(res) {
-                            if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-                                map.panTo(res.point);
-                            }
-                        });
+                        setTimeout(function() {
+                            markerClusterer.addMarkers(markers);
+                            $('#loader').fadeOut('fast');
+                            geolocation.getCurrentPosition();
+                        }, 800);
                     });
                 }
+
+                /**
+                 *  初始化百度地图
+                 */
+
+                var queryUrl = '{{$apiUrl}}';
+                var markers = [];
+
+                var map = new BMap.Map("map");
+                var point = new BMap.Point(114.313886,30.601948);
+                var geolocation = new BMap.Geolocation();
+                var geocoder = new BMap.Geocoder();
+                var markerClusterer = new BMapLib.MarkerClusterer(map, {minClusterSize: 3});
+
+                map.centerAndZoom(point, 6);
+                map.enableScrollWheelZoom(true);
+                map.addControl(new BMap.ScaleControl());
+                map.addControl(new BMap.NavigationControl());
+                map.addControl(new BMap.GeolocationControl({offset: new BMap.Size(15, 50)}));
 
                 /**
                  *  通过Ajax加载所有店铺
@@ -213,6 +220,7 @@
 
                 $('#home').on('click', function(e) {
                     e.preventDefault();
+                    markerClusterer.clearMarkers();
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
                     xhr = $.get(queryUrl);
@@ -222,11 +230,16 @@
 
                 $('#search-form').on('submit', function(e) {
                     e.preventDefault();
+                    markerClusterer.clearMarkers();
                     $('#loader').fadeIn('fast');
                     var query = $('#query').val();
                     xhr = $.get(queryUrl + '?query=' + query);
                     history.pushState(null, '{{$pageTitle}}', 'map.html?query=' + query);
                     addXhrEvents(xhr, true);
+                });
+
+                map.addEventListener("zoomend", function() {
+                    markerClusterer.addMarkers(markers);
                 });
 
             });

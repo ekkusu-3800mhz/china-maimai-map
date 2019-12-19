@@ -199,7 +199,7 @@
                 var point = new BMap.Point(114.313886,30.601948);
                 var geolocation = new BMap.Geolocation();
                 var geocoder = new BMap.Geocoder();
-                var markerClusterer = new BMapLib.MarkerClusterer(map, {minClusterSize: 3});
+                var markerClusterer = new BMapLib.MarkerClusterer(map, {minClusterSize: 2});
 
                 map.centerAndZoom(point, 6);
                 map.enableScrollWheelZoom(true);

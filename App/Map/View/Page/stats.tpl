@@ -29,6 +29,16 @@
             .table {
                 margin-bottom: 0px;
             }
+            h4.shop-name {
+                margin-top: 3px;
+                font-weight: bold;
+            }
+            p.shop-description {
+                margin-bottom: 0px;
+            }
+            span.badge {
+                margin-top: -3px;
+            }
         </style>
         <!--[if lt IE 9]>
             <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
@@ -48,7 +58,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/page/stats.html"><span class="fa fa-bar-chart"></span> 机台分布统计</a></li>
+                        <li class="active"><a href="/page/stats.html"><span class="fa fa-bar-chart"></span> 数据变更一览</a></li>
                         <li><a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></li>
                         <li><a href="https://www.wjx.cn/jq/52799413.aspx" target="_blank"><span class="fa fa-comment"></span> 问题反馈</a></li>
                     </ul>
@@ -66,42 +76,36 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6 count-cell">
-                                    <p>店铺总数</p>
-                                    <p class="count-num text-info">{{$count.shop}}</p>
+                                    <p>店铺总数 <if condition="$delta.machine gt 0"><span class="text-danger">(+{{$delta.shop}})</span></if></p>
+                                    <p class="count-num text-info">{{$total.shop}}</p>
                                 </div>
                                 <div class="col-sm-6 count-cell">
-                                    <p>机台总数</p>
-                                    <p class="count-num text-success">{{$count.machine}}</p>
+                                    <p>机台总数 <if condition="$delta.machine gt 0"><span class="text-danger">(+{{$delta.machine}})</span></if></p>
+                                    <p class="count-num text-success">{{$total.machine}}</p>
                                 </div>
                             </div>
                             <p>截至 {{$time}}</p>
                         </div>
                     </div>
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><span class="fa fa-map"></span> 各地分布</h3>
+                    <if condition="$delta.machine gt 0">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><span class="fa fa-map"></span> 店铺数据变更一览</h3>
+                            </div>
+                            <ul class="list-group">
+                                <foreach name="shop" item="s">
+                                    <li class="list-group-item">
+                                        <h4 class="shop-name">{{$s.arcadeName}} <span class="badge"><span class="fa fa-map-marker"></span> {{$s.province}}</span></h4>
+                                        <p class="shop-description">地址：{{$s.address}} &nbsp;&nbsp;/&nbsp;&nbsp; 数量：{{$s.machineCount}}组</p>
+                                    </li>
+                                </foreach>
+                            </ul>
                         </div>
-                        <div class="panel-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 40%;">已上线地区</th>
-                                        <th style="width: 30%; text-align: center;">店铺数量</th>
-                                        <th style="width: 30%; text-align: right;">机台数量</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <foreach name="stats" key="province" item="stat">
-                                        <tr>
-                                            <td><a href="/page/map.html?location={{$province}}"><span class="fa fa-map-marker"></span> {{$province}}</a></td>
-                                            <td style="text-align: center;">{{$stat.shop}}</td>
-                                            <td style="text-align: right;">{{$stat.machine}}组</td>
-                                        </tr>
-                                    </foreach>
-                                </tbody>
-                            </table>
+                    <else />
+                        <div class="alert alert-info">
+                            <span class="fa fa-info-circle"></span> 当前未检测到有店铺的数据发生变更
                         </div>
-                    </div>
+                    </if>
                 </div>
                 <div class="col-md-3 hidden-xs"></div>
             </div>

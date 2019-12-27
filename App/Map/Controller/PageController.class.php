@@ -47,7 +47,7 @@ class PageController extends Webpage {
     }
 
     /**
-     *  机台分布统计页面操作
+     *  机台数据变更一览页面操作
      *
      *  @return void
      */
@@ -56,10 +56,11 @@ class PageController extends Webpage {
         $this->page('get', function() {
             $result = $this->model->data->getStats();
             $this->assign('time', date('Y-m-d H:i'));
-            $this->assign('count', $result['count']);
-            $this->assign('stats', $result['stats']);
+            $this->assign('total', $result['total']);
+            $this->assign('delta', $result['delta']);
+            $this->assign('shop', $result['shop']);
             $this->display();
-        }, '机台分布统计');
+        }, '机台数据变更一览');
     }
 
 }

@@ -11,6 +11,7 @@
 namespace Map\Model;
 
 use \Map\Lib\Curl,
+    \Map\Model\DataCompareModel,
     \Think\Exception;
 
 class DataSourceModel {
@@ -117,32 +118,18 @@ class DataSourceModel {
      */
 
     public function getStats() {
-        $provinces = array();
-        $stats = array();
-        $shopNum = 0;
         $machineNum = 0;
         foreach ($this->_rawData as $raw) {
-            $provinces[] = $raw['province'];
+            $machineNum += $raw['count'];
         }
-        $provincesUnique = array_unique($provinces);
-        for ($i = 0; $i < count($this->_rawData); $i++) {
-            foreach ($provincesUnique as $prov) {
-                if ($this->_rawData[$i]['province'] == $prov) {
-                    $stats[$prov]['machine'] += $this->_rawData[$i]['count'];
-                    $machineNum += $this->_rawData[$i]['count'];
-                }
-            }
-        }
-        foreach (array_count_values($provinces) as $prov => $num) {
-            $stats[$prov]['shop'] = $num;
-            $shopNum += $num;
-        }
+        $delta = (new DataCompareModel())->getCompared();
         return array(
-            'count' => array(
-                'shop'    => $shopNum,
+            'total' => array(
+                'shop'    => count($this->_rawData),
                 'machine' => $machineNum
             ),
-            'stats' => $stats
+            'delta' => $delta['count'],
+            'shop'  => $delta['data']
         );
     }
 

@@ -34,9 +34,8 @@ class IndexController extends Webpage {
 
     public function dailyDataDownloadAction() {
         // 使用 HTTP Basic 认证进行鉴权
-        if ((I('server.PHP_AUTH_USER') != C('AUTH_USER')) || !password_verify(I('server.PHP_AUTH_PW'), C('AUTH_PASS'))) {
-            header('WWW-Authenticate: Basic realm="MaiDX-CHN-Map"');
-            header('HTTP/1.1 401 Unauthorized');
+        if (I('get.token') != C('AUTH_TOKEN')) {
+            header('HTTP/1.1 403 Forbidden');
             die('Access Denied');
         } else {
             $file = SITE_ROOT . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Runtime' . DIRECTORY_SEPARATOR . 'Temp' . DIRECTORY_SEPARATOR . 'dailydata.json';

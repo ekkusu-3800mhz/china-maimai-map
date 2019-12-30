@@ -76,7 +76,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-sm-6 count-cell">
-                                    <p>店铺总数 <if condition="$delta.machine gt 0"><span class="text-danger">(+{{$delta.shop}})</span></if></p>
+                                    <p>店铺总数 <if condition="$delta.machine gt 0"><if condition="$delta.shop gt 0"><span class="text-danger">(+{{$delta.shop}})</span></if></if></p>
                                     <p class="count-num text-info">{{$total.shop}}</p>
                                 </div>
                                 <div class="col-sm-6 count-cell">
@@ -85,6 +85,7 @@
                                 </div>
                             </div>
                             <p>截至 {{$time}}</p>
+                            <p>（店铺增量数据将于次日 03:00 存档）</p>
                         </div>
                     </div>
                     <if condition="$delta.machine gt 0">
@@ -103,7 +104,8 @@
                         </div>
                     <else />
                         <div class="alert alert-info">
-                            <span class="fa fa-info-circle"></span> 当前未检测到有店铺的数据发生变更
+                            <span class="fa fa-info-circle"></span> 当前未检测到数据发生变更的店铺。
+                            <br>若您需要查看完整的店铺信息，请参阅 <a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></a>
                         </div>
                     </if>
                 </div>

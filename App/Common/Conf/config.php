@@ -28,8 +28,7 @@ return array(
 
     /* 每日机台分布数据下载操作认证参数 */
 
-    'AUTH_USER'            => $config['dailydata']['authentication']['user'],
-    'AUTH_PASS'            => password_hash($config['dailydata']['authentication']['pass'], PASSWORD_DEFAULT),
+    'AUTH_TOKEN'           => $config['dailydata']['authentication'],
 
     /* 杂项配置 */
 

@@ -9,37 +9,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap">
         <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style type="text/css">
-            body {
-                padding-top: 70px;
-                font-family: "Noto Sans SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
-            }
-            div.count-panel > div.panel-body {
-                text-align: center;
-            }
-            div.count-panel > div.panel-body > div.row > div.count-cell > p.count-num {
-                font-size: 48px;
-                font-weight: bold;
-                padding-bottom: 5px;
-            }
-            div.count-panel > div.panel-body > div.row > div.count-cell {
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-            .table {
-                margin-bottom: 0px;
-            }
-            h4.shop-name {
-                margin-top: 3px;
-                font-weight: bold;
-            }
-            p.shop-description {
-                margin-bottom: 0px;
-            }
-            span.badge {
-                margin-top: -3px;
-            }
-        </style>
+        <style type="text/css">body{padding-top:70px;font-family:"Noto Sans SC",微软雅黑,Arial,黑体,宋体,sans-serif!important}div.count-panel>div.panel-body{text-align:center}div.count-panel>div.panel-body>div.row>div.count-cell>p.count-num{font-size:48px;font-weight:bold;padding-bottom:5px}div.count-panel>div.panel-body>div.row>div.count-cell{padding-top:20px;padding-bottom:20px}.table{margin-bottom:0}h4.shop-name{margin-top:3px;font-weight:bold}p.shop-description{margin-bottom:0}span.badge{margin-top:-3px}</style>
         <!--[if lt IE 9]>
             <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
             <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>

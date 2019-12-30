@@ -33,8 +33,7 @@ class IndexController extends Webpage {
      */
 
     public function dailyDataDownloadAction() {
-        // 使用 HTTP Basic 认证进行鉴权
-        if (I('get.token') != C('AUTH_TOKEN')) {
+        if (I('get.token') != C('DAILY_AUTH_TOKEN')) {
             header('HTTP/1.1 403 Forbidden');
             die('Access Denied');
         } else {

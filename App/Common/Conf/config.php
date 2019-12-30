@@ -28,7 +28,7 @@ return array(
 
     /* 每日机台分布数据下载操作认证参数 */
 
-    'AUTH_TOKEN'           => $config['dailydata']['authentication'],
+    'DAILY_AUTH_TOKEN'     => $config['dailydata']['authentication'],
 
     /* 杂项配置 */
 

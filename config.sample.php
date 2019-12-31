@@ -10,8 +10,5 @@
 return array(
     'dxservice' => array(
         'url'   => 'http://wc.wahlap.net/maidx/rest/location'
-    ),
-    'dailydata' => array(
-        'authentication' => ''
     )
 );

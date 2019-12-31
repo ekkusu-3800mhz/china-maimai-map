@@ -33,23 +33,18 @@ class IndexController extends Webpage {
      */
 
     public function dailyDataDownloadAction() {
-        if (I('get.token') != C('DAILY_AUTH_TOKEN')) {
-            header('HTTP/1.1 403 Forbidden');
-            die('Access Denied' . PHP_EOL);
+        $file = SITE_ROOT . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Runtime' . DIRECTORY_SEPARATOR . 'Temp' . DIRECTORY_SEPARATOR . 'dailydata.json';
+        $raw = (new Curl(C('API_URL')))->get()->result(true);
+        $dailyData = array(
+            'date' => date('Y-m-d'),
+            'data' => $raw
+        );
+        if (file_put_contents($file, json_encode($dailyData)) !== false) {
+            die('OK' . PHP_EOL);
+            header('HTTP/1.1 200 OK');
         } else {
-            $file = SITE_ROOT . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Runtime' . DIRECTORY_SEPARATOR . 'Temp' . DIRECTORY_SEPARATOR . 'dailydata.json';
-            $raw = (new Curl(C('API_URL')))->get()->result(true);
-            $dailyData = array(
-                'date' => date('Y-m-d'),
-                'data' => $raw
-            );
-            if (file_put_contents($file, json_encode($dailyData)) !== false) {
-                die('OK' . PHP_EOL);
-                header('HTTP/1.1 200 OK');
-            } else {
-                die('ERROR ON WRITING' . PHP_EOL);
-                header('HTTP/1.1 404 Not Found');
-            }
+            die('ERROR ON WRITING' . PHP_EOL);
+            header('HTTP/1.1 404 Not Found');
         }
     }
 

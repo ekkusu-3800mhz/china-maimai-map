@@ -40,10 +40,10 @@ class IndexController extends Webpage {
             'data' => $raw
         );
         if (file_put_contents($file, json_encode($dailyData)) !== false) {
-            die('OK' . PHP_EOL);
+            die('[' . date('Y-m-d') . '] OK' . PHP_EOL);
             header('HTTP/1.1 200 OK');
         } else {
-            die('ERROR ON WRITING' . PHP_EOL);
+            die('[' . date('Y-m-d') . '] ERROR ON WRITING' . PHP_EOL);
             header('HTTP/1.1 404 Not Found');
         }
     }

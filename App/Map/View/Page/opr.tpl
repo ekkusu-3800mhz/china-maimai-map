@@ -14,7 +14,9 @@
                 padding-top: 70px;
                 font-family: "Noto Sans SC", 微软雅黑, Arial, 黑体, 宋体, sans-serif !important;
             }
-            
+            div.opr-panel > div.panel-body {
+                text-align: center;
+            }
         </style>
         <!--[if lt IE 9]>
             <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
@@ -45,7 +47,7 @@
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
                 <div class="col-md-6">
-                    <div class="panel panel-info">
+                    <div class="panel panel-info opr-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title"><span class="fa fa-info-circle"></span> 模块维护中</h3>
                         </div>
@@ -57,6 +59,9 @@
                                 以进行次日的店铺数据变更比对。
                             </p>
                             <p>对您造成的不便，敬请谅解。</p>
+                            <p>
+                                <img src="__IMG__/dxkuma-smile.png" alt="dxkuma">
+                            </p>
                         </div>
                     </div>
                 </div>

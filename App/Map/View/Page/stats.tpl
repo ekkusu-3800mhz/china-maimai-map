@@ -77,7 +77,7 @@
                             <div class="panel-body">
                                 <p>店铺数据变更一览模块正在维护中。</p>
                                 <p>
-                                    我们将在每日的 <strong class="text-info">{{$oprStop}}</strong> 至 <strong class="text-info">{{$oprStop}}</strong> 对昨日的变更数据进行统计存档，
+                                    我们将在每日的 <strong class="text-info">{{$oprStart}}</strong> 至 <strong class="text-info">{{$oprStop}}</strong> 对昨日的变更数据进行统计存档，
                                     <br>
                                     以进行次日的店铺数据变更比对。
                                 </p>

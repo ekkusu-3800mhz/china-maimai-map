@@ -39,44 +39,61 @@
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
                 <div class="col-md-6">
-                    <div class="panel panel-success count-panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><span class="fa fa-pie-chart"></span> 数据概览</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-6 count-cell">
-                                    <p>店铺总数 <if condition="$delta.machine gt 0"><if condition="$delta.shop gt 0"><span class="text-danger">(+{{$delta.shop}})</span></if></if></p>
-                                    <p class="count-num text-info">{{$total.shop}}</p>
-                                </div>
-                                <div class="col-sm-6 count-cell">
-                                    <p>机台总数 <if condition="$delta.machine gt 0"><span class="text-danger">(+{{$delta.machine}})</span></if></p>
-                                    <p class="count-num text-success">{{$total.machine}}</p>
-                                </div>
-                            </div>
-                            <p>截至 {{$time}}</p>
-                            <p>（店铺增量数据将于次日 03:00 存档）</p>
-                        </div>
-                    </div>
-                    <if condition="$delta.machine gt 0">
+                    <if condition="$opr">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><span class="fa fa-map"></span> 店铺数据变更一览</h3>
+                                <h3 class="panel-title"><span class="fa fa-info-circle"></span> 模块维护中</h3>
                             </div>
-                            <ul class="list-group">
-                                <foreach name="shop" item="s">
-                                    <li class="list-group-item">
-                                        <h4 class="shop-name">{{$s.arcadeName}} <span class="badge"><span class="fa fa-map-marker"></span> {{$s.province}}</span></h4>
-                                        <p class="shop-description">地址：{{$s.address}} &nbsp;&nbsp;/&nbsp;&nbsp; 数量：{{$s.machineCount}}组</p>
-                                    </li>
-                                </foreach>
-                            </ul>
+                            <div class="panel-body">
+                                <p>店铺数据变更一览模块正在维护中。</p>
+                                <p>
+                                    我们将在每日的 <strong class="text-info">{{$oprStop}}</strong> 至 <strong class="text-info">{{$oprStop}}</strong> 对昨日的变更数据进行统计存档，
+                                    <br>
+                                    以进行次日的店铺数据变更比对。
+                                </p>
+                                <p>对您造成的不便，敬请谅解。</p>
+                            </div>
                         </div>
                     <else />
-                        <div class="alert alert-info">
-                            <span class="fa fa-info-circle"></span> 当前未检测到数据发生变更的店铺。
-                            <br>若您需要查看完整的店铺信息，请参阅 <a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></a>
+                        <div class="panel panel-success count-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><span class="fa fa-pie-chart"></span> 数据概览</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6 count-cell">
+                                        <p>店铺总数 <if condition="$delta.machine gt 0"><if condition="$delta.shop gt 0"><span class="text-danger">(+{{$delta.shop}})</span></if></if></p>
+                                        <p class="count-num text-info">{{$total.shop}}</p>
+                                    </div>
+                                    <div class="col-sm-6 count-cell">
+                                        <p>机台总数 <if condition="$delta.machine gt 0"><span class="text-danger">(+{{$delta.machine}})</span></if></p>
+                                        <p class="count-num text-success">{{$total.machine}}</p>
+                                    </div>
+                                </div>
+                                <p>截至 {{$time}}</p>
+                                <p>（店铺增量数据将于次日 {{$oprStart}} 统计存档）</p>
+                            </div>
                         </div>
+                        <if condition="$delta.machine gt 0">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><span class="fa fa-map"></span> 店铺数据变更一览</h3>
+                                </div>
+                                <ul class="list-group">
+                                    <foreach name="shop" item="s">
+                                        <li class="list-group-item">
+                                            <h4 class="shop-name">{{$s.arcadeName}} <span class="badge"><span class="fa fa-map-marker"></span> {{$s.province}}</span></h4>
+                                            <p class="shop-description">地址：{{$s.address}} &nbsp;&nbsp;/&nbsp;&nbsp; 数量：{{$s.machineCount}}组</p>
+                                        </li>
+                                    </foreach>
+                                </ul>
+                            </div>
+                        <else />
+                            <div class="alert alert-info">
+                                <span class="fa fa-info-circle"></span> 当前未检测到数据发生变更的店铺。
+                                <br>若您需要查看完整的店铺信息，请参阅 <a href="http://wc.wahlap.net/maidx/location/index.html" target="_blank"><span class="fa fa-window-restore"></span> 官方店铺列表</a></a>
+                            </div>
+                        </if>
                     </if>
                 </div>
                 <div class="col-md-3 hidden-xs"></div>

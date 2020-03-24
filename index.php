@@ -15,6 +15,9 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG', false);
 
+// 设置时区
+date_default_timezone_set('Asia/Shanghai');
+
 // 绑定模块
 define('BIND_MODULE', 'Map');
 

@@ -28,6 +28,10 @@ return array(
         ),
     ),
     'dxservice' => array(
-        'url' => 'http://wc.wahlap.net/maidx/rest/location',
+        'url'         => 'http://wc.wahlap.net/maidx/rest/location',
+        'oprduration' => array(
+            'start' => '04:00',
+            'end'   => '07:00',
+        ),
     ),
 );

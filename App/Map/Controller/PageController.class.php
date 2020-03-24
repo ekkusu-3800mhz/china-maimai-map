@@ -60,19 +60,18 @@ class PageController extends Webpage {
             );
             $now = time();
             if (($now >= $opr['start']) && ($now <= $opr['stop'])) {
-                $this->assign('isOpr', true);
                 $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
                 $this->assign('oprStop', C('DAILY_STAT_OPR_STOP'));
+                $this->display('opr');
             } else {
                 $result = $this->model->data->getStats();
-                $this->assign('isOpr', false);
                 $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
                 $this->assign('time', date('Y-m-d H:i'));
                 $this->assign('total', $result['total']);
                 $this->assign('delta', $result['delta']);
                 $this->assign('shop', $result['shop']);
+                $this->display();
             }
-            $this->display();
         }, '机台数据变更一览');
     }
 

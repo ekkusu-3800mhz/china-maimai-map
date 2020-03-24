@@ -58,13 +58,14 @@ class PageController extends Webpage {
                 'start' => strtotime(date('Y-m-d') . ' ' . C('DAILY_STAT_OPR_START')),
                 'stop'  => strtotime(date('Y-m-d') . ' ' . C('DAILY_STAT_OPR_STOP')),
             );
-            if ((time() > $opr['start']) && (time() < $opr['stop'])) {
-                $this->assign('opr', true);
+            $now = time();
+            if (($now >= $opr['start']) && ($now <= $opr['stop'])) {
+                $this->assign('isOpr', true);
                 $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
                 $this->assign('oprStop', C('DAILY_STAT_OPR_STOP'));
             } else {
                 $result = $this->model->data->getStats();
-                $this->assign('opr', false);
+                $this->assign('isOpr', false);
                 $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
                 $this->assign('time', date('Y-m-d H:i'));
                 $this->assign('total', $result['total']);

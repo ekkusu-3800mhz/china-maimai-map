@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
                 <div class="col-md-6">
-                    <if condition="$opr">
+                    <if condition="$isOpr">
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><span class="fa fa-info-circle"></span> 模块维护中</h3>

@@ -39,7 +39,7 @@ return array(
     /* 每日数据统计维护时间段配置 */
 
     'DAILY_STAT_OPR_START' => $config['dxservice']['oprduration']['start'],
-    'DAILY_STAT_OPT_STOP'  => $config['dxservice']['oprduration']['stop'],
+    'DAILY_STAT_OPR_STOP'  => $config['dxservice']['oprduration']['end'],
 
     /* 模板变量配置 */
 

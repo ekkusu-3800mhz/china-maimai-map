@@ -69,20 +69,6 @@
             <div class="row">
                 <div class="col-md-3 hidden-xs"></div>
                 <div class="col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><span class="fa fa-info-circle"></span> 模块维护中</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>店铺数据变更一览模块正在维护中。</p>
-                                <p>
-                                我们将在每日的 <strong class="text-info">{{$oprStart}}</strong> 至 <strong class="text-info">{{$oprStop}}</strong> 对昨日的变更数据进行统计存档，
-                                <br>
-                                以进行次日的店铺数据变更比对。
-                            </p>
-                            <p>对您造成的不便，敬请谅解。</p>
-                        </div>
-                    </div>
                     <div class="panel panel-success count-panel">
                         <div class="panel-heading">
                             <h3 class="panel-title"><span class="fa fa-pie-chart"></span> 数据概览</h3>

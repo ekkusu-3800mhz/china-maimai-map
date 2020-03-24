@@ -17,6 +17,11 @@
             div.opr-panel > div.panel-body {
                 text-align: center;
             }
+            div.opr-panel > div.panel-body > p > img.dxkuma {
+                height: 120px;
+                margin-left: 12px;
+                margin-top: 15px;
+            }
         </style>
         <!--[if lt IE 9]>
             <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
@@ -60,7 +65,7 @@
                             </p>
                             <p>对您造成的不便，敬请谅解。</p>
                             <p>
-                                <img src="__IMG__/dxkuma-smile.png" alt="dxkuma">
+                                <img class="dxkuma" src="__IMG__/dxkuma-smile.png" alt="dxkuma">
                             </p>
                         </div>
                     </div>

@@ -54,11 +54,23 @@ class PageController extends Webpage {
 
     public function statsAction() {
         $this->page('get', function() {
-            $result = $this->model->data->getStats();
-            $this->assign('time', date('Y-m-d H:i'));
-            $this->assign('total', $result['total']);
-            $this->assign('delta', $result['delta']);
-            $this->assign('shop', $result['shop']);
+            $opr = array(
+                'start' => strtotime(date('Y-m-d') . ' ' . C('DAILY_STAT_OPR_START')),
+                'stop'  => strtotime(date('Y-m-d') . ' ' . C('DAILY_STAT_OPR_STOP')),
+            );
+            if ((time() > $opr['start']) && (time() < $opr['stop'])) {
+                $this->assign('opr', true);
+                $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
+                $this->assign('oprStop', C('DAILY_STAT_OPR_STOP'));
+            } else {
+                $result = $this->model->data->getStats();
+                $this->assign('opr', false);
+                $this->assign('oprStart', C('DAILY_STAT_OPR_START'));
+                $this->assign('time', date('Y-m-d H:i'));
+                $this->assign('total', $result['total']);
+                $this->assign('delta', $result['delta']);
+                $this->assign('shop', $result['shop']);
+            }
             $this->display();
         }, '机台数据变更一览');
     }
